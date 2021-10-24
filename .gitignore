@@ -10,3 +10,22 @@ __pycache__
 ## Django
 *.sqlite3
 migrations/
+
+## Clojure
+/target
+/classes
+/checkouts
+profiles.clj
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+/.lein-*
+/.nrepl-port
+.hgignore
+.hg/
+node_modules/
+package-lock.json
+dist
+.cpcache/
+deps-graph.png
