@@ -1,0 +1,9 @@
+FROM wang/alpine-openjdk11
+
+ARG FILE
+ARG APP
+
+ENV APPDIR /app
+WORKDIR $APPDIR
+
+COPY $FILE $APPDIR/$APP
