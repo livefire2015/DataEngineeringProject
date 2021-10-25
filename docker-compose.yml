@@ -139,7 +139,7 @@ services:
                - FILE=/usr/src/app/target/core-server.jar
                - APP=core-server.jar
         restart: unless-stopped
-        command: ["java", "-cp", "/app/core-server.jar", "clojure.main", "-m", "core.handler"]
+        command: ["java", "-cp", "core-server.jar", "core.handler"]
         ports:
             - 9090:9090
         volumes:
