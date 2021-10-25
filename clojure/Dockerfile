@@ -22,3 +22,5 @@ ENV APPDIR /app
 WORKDIR $APPDIR
 
 COPY --from=build $FILE $APPDIR/$APP
+
+CMD ["java", "-cp", "/app/core-server.jar", "core.handler"]
