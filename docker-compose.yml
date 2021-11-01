@@ -2,7 +2,7 @@ version: "3.7"
 services:
     postgres:
         container_name: postgres
-        image: postgres:9.6
+        image: postgres:13.4
         environment:
             - POSTGRES_USER=${AIRFLOW}
             - POSTGRES_PASSWORD=${AIRFLOW}

@@ -1,4 +1,4 @@
-FROM puckel/docker-airflow:1.10.9
+FROM wuuker/docker-airflow:2.2.1
 
 WORKDIR /usr/local/airflow
 
