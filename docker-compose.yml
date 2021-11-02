@@ -141,7 +141,15 @@ services:
         restart: unless-stopped
         ports:
             - 9090:9090
-    
+        depends_on:
+            - xtdb
+
+    xtdb:
+        container_name: xtdb
+        build: ./xtdb/docker
+        ports:
+            - 3000:3000
+
     proxy:
         container_name: proxy
         build: ./api/proxy
