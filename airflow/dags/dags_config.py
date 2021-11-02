@@ -54,3 +54,8 @@ class Config:
             "en", "pl", "es", "de"
         ]
     }
+
+    REFERENCE_RATES = {
+        "secured": ["https://markets.newyorkfed.org/api/rates/secured/all/latest.xml"],
+        "unsecured": ["https://markets.newyorkfed.org/api/rates/unsecured/all/latest.xml"]
+    }
