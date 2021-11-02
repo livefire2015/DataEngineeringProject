@@ -21,7 +21,6 @@
             [ring.middleware.cookies :refer [wrap-cookies]]
             [ring.middleware.cors :refer [wrap-cors]]
             [buddy.auth.middleware :refer [wrap-authentication]]
-            [common.middleware.node :refer [wrap-xtdb-node]]
             [config.core :as config])
   (:gen-class))
 
@@ -64,7 +63,6 @@
              wrap-json-params
              (wrap-cors :access-control-allow-origin [#"http://localhost:3000" #"http://localhost:8080"]
                         :access-control-allow-methods [:get :put :post :delete])
-             wrap-xtdb-node
              wrap-debug))
 
 ;; (selmer.parser/cache-on!)
