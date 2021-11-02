@@ -19,6 +19,7 @@
             [ring.middleware.resource :refer [wrap-resource]]
             [jwt-backend.jws :as jws-backend]
             [ring.middleware.cookies :refer [wrap-cookies]]
+            [ring.middleware.cors :refer [wrap-cors]]
             [buddy.auth.middleware :refer [wrap-authentication]]
             [config.core :as config])
   (:gen-class))
@@ -60,6 +61,8 @@
              wrap-params
              wrap-json-response
              wrap-json-params
+             (wrap-cors :access-control-allow-origin [#"http://localhost:3000" #"http://localhost:8080"]
+                        :access-control-allow-methods [:get :put :post :delete])
              wrap-debug))
 
 ;; (selmer.parser/cache-on!)
