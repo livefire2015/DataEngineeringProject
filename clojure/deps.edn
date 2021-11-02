@@ -30,6 +30,10 @@
   juxt/pick {:git/url "https://github.com/juxt/pick.git"
              :sha "64a24d1bd647dbbb2767bd5a4401a3eab934d5c0"}
   clj-http/clj-http {:mvn/version "3.12.3"}
+  com.xtdb/xtdb-core {:mvn/version "1.19.0"}
+  com.xtdb/xtdb-kafka {:mvn/version "1.19.0"}
+  com.xtdb/xtdb-http-server {:mvn/version "1.19.0"}
+  com.xtdb/xtdb-rocksdb {:mvn/version "1.19.0"}
   }
 
  :aliases
