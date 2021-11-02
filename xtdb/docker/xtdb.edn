@@ -1,0 +1,4 @@
+{:xtdb/index-store {:kv-store {:xtdb/module xtdb.rocksdb/->kv-store, :db-dir "/var/lib/xtdb/indexes"}}
+ :xtdb/document-store {:kv-store {:xtdb/module xtdb.rocksdb/->kv-store, :db-dir "/var/lib/xtdb/documents"}}
+ :xtdb/tx-log {:kv-store {:xtdb/module xtdb.rocksdb/->kv-store, :db-dir "/var/lib/xt/tx-log"}}
+ :xtdb.http-server/server {}}
