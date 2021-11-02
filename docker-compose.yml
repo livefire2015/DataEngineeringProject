@@ -87,6 +87,7 @@ services:
             - schema-registry
             - api
             - minio
+            - clojure
 
     elasticsearch:
         container_name: elasticsearch
