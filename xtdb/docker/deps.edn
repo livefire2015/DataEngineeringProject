@@ -8,4 +8,5 @@
         ;; XTDB
         com.xtdb/xtdb-core {:mvn/version "1.19.0"}
         com.xtdb/xtdb-rocksdb {:mvn/version "1.19.0"}
+        com.xtdb/xtdb-kafka {:mvn/version "1.19.0"}
         com.xtdb/xtdb-http-server {:mvn/version "1.19.0"}}}
