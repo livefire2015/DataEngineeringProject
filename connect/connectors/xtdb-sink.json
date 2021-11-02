@@ -1,0 +1,12 @@
+{
+    "name":"xtdb-sink",
+    "config": {
+        "connector.class":"xtdb.kafka.connect.XtdbSinkConnector",
+        "tasks.max":"1",
+        "topics":"rss_news",
+        "key.converter":"org.apache.kafka.connect.json.JsonConverter",
+        "key.converter.schemas.enable":false,
+        "value.converter":"org.apache.kafka.connect.json.JsonConverter",
+        "value.converter.schemas.enable":false
+    }
+}
