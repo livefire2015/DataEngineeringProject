@@ -9,23 +9,15 @@
 
 (defn- start-xtdb-node
   []
-  (let [config {:kafka-config {:xtdb/module 'xtdb.kafka/->kafka-config
-                               :bootstrap-servers "localhost:9092"
-                               }
-                :xtdb/tx-log {:xtdb/module 'xtdb.kafka/->tx-log
-                              :kafka-config :kafka-config
-                              }
-                :xtdb/document-store {:xtdb/module 'xtdb.kafka/->document-store
-                                      :kafka-config :kafka-config
-                                      }
-                :xtdb.http-server/server {:port 3000}
-                }]
-    (xt/start-node config)))
+  (let [config {}]
+    ;; (xt/start-node config)
+    (xt/new-api-client "http://xtdb:3000")
+    ))
 
 (mount/defstate xtdb-node
   :start (do
            (log/info "Starting xtdb-node...")
-           (let [node (start-xtdb-node)]
+           (let [^IXtdb node (start-xtdb-node)]
              (log/info "Started Syncing node...")
              (xt/sync node)
              (log/info "STARTED xtdb-node.")
