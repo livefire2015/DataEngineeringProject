@@ -89,6 +89,7 @@ services:
             - schema-registry
             - api
             - minio
+            - xtdb
 
     elasticsearch:
         container_name: elasticsearch
