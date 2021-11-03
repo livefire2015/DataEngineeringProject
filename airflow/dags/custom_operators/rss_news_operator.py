@@ -49,7 +49,7 @@ class RSSNewsOperator(BaseOperator):
                     validator.validate_news(news)
                     exporter.export_news_to_broker(
                         self.topic,
-                        news.as_dict()
+                        news.as_dict_xt()
                     )
             except Exception as err:
                 redis.lpop_proxy()

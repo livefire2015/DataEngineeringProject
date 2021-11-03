@@ -17,6 +17,11 @@ class News:
     def as_dict(self):
         return self.__dict__
 
+    def as_dict_xt(self):
+        d = self.__dict__
+        d['xt/id'] = self._id
+        return d
+
 
 class NewsProducer:
     def __init__(self, rss_feed, language):
