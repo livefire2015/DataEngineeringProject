@@ -49,8 +49,6 @@ services:
             - DEFAULT_TOPIC=${DEFAULT_TOPIC}
             - KAFKA_ZOOKEEPER_CONNECT=${ZOOKEEPER_URL}
             - KAFKA_ADVERTISED_LISTENERS=${KAFKA_LISTENERS}
-        ports:
-            - 9092:9092
         depends_on:
             - zookeeper  
 
