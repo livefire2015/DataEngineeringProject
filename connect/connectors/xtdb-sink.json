@@ -1,12 +1,14 @@
 {
     "name":"xtdb-sink",
     "config": {
-        "connector.class":"xtdb.kafka.connect.XtdbSinkConnector",
+        "connector.class":"crux.kafka.connect.CruxSinkConnector",
         "tasks.max":"1",
         "topics":"rss_news",
         "key.converter":"org.apache.kafka.connect.json.JsonConverter",
         "key.converter.schemas.enable":false,
         "value.converter":"org.apache.kafka.connect.json.JsonConverter",
-        "value.converter.schemas.enable":false
+        "value.converter.schemas.enable":false,
+        "url":"http://localhost:3000",
+        "id.key":"xt/id"
     }
 }
