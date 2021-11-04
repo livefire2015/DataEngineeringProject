@@ -20,6 +20,9 @@ class News:
     def as_dict_xt(self):
         d = self.__dict__
         d['xt/id'] = self._id
+        d['entity/type'] = 'rss_news'
+        #TODO: valid-time
+        del d['_id']
         return d
 
 
