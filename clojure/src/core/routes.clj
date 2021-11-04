@@ -2,7 +2,9 @@
   (:require [reitit.core :as r]
             [ring.util.http-response :as rr]
             [reitit.ring :as ring]
-            [taoensso.timbre :as log]))
+            [taoensso.timbre :as log]
+            [routes.news :as news]
+            ))
 
 (defn healthz-ok
   [req]
@@ -26,5 +28,5 @@
 
 (def all-routes
   [default-routes
-
+   news/news-routes
    healthz-routes])
