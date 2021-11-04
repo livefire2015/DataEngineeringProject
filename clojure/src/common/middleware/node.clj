@@ -3,16 +3,23 @@
             [config.core :as config :refer [env]]
             [clojure.java.io :as io]
             [taoensso.timbre :as log]
-            [mount.core :as mount]
-            )
+            [mount.core :as mount])
+            
   (:import [xtdb.api IXtdb]))
 
 (defn- start-xtdb-node
   []
-  (let [config {}]
-    ;; (xt/start-node config)
-    (xt/new-api-client "http://xtdb:3000")
-    ))
+  (let [config {:xtdb/index-store {:kv-store {:xtdb/module 'xtdb.rocksdb/->kv-store, :db-dir "/var/lib/xtdb/indexes"}}
+                :xtdb/document-store {:kv-store {:xtdb/module 'xtdb.rocksdb/->kv-store, :db-dir "/var/lib/xtdb/documents"}}
+                :xtdb/tx-log {:xtdb/module 'xtdb.kafka/->tx-log
+                              :kafka-config {:bootstrap-servers "kafka:9092"}
+                              :tx-topic-opts {:topic-name "crux-transaction-log"}
+                              :poll-wait-duration "PT1S"}
+                :xtdb.http-server/server {:port 3000
+                                          :jetty-opts {:host "0.0.0.0"}}}]
+    (xt/start-node config))
+    ;; (xt/new-api-client "http://xtdb:3000")
+  )
 
 (mount/defstate xtdb-node
   :start (do
