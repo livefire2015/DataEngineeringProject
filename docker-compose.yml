@@ -87,7 +87,7 @@ services:
             - schema-registry
             - api
             - minio
-            - xtdb
+            - clojure
 
     elasticsearch:
         container_name: elasticsearch
@@ -142,16 +142,6 @@ services:
         restart: unless-stopped
         ports:
             - 9090:9090
-        depends_on:
-            - xtdb
-
-    xtdb:
-        container_name: xtdb
-        build: ./xtdb/docker
-        ports:
-            - 3000:3000
-        depends_on:
-            - kafka
 
     proxy:
         container_name: proxy
