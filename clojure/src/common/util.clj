@@ -7,7 +7,8 @@
             [ring.util.codec :as codec]
             [clojure.walk :as walk]
             [camel-snake-kebab.core :as csk]
-            ))
+            [clojure.java.io :as io]
+            [clojure.edn :as edn]))
 
 (def ^:private us-ascii-charset (java.nio.charset.Charset/forName "US-ASCII"))
 (def ^:private utf-8-charset (java.nio.charset.Charset/forName "UTF-8"))
@@ -282,3 +283,15 @@
 
     (coll? x)
     (map #(transform-keys % csk/->camelCaseKeyword) x)))
+
+(defn load-edn
+  "Load edn from an io/reader source (filename or io/resource)."
+  [source]
+  (try
+    (with-open [r (io/reader source)]
+      (edn/read (java.io.PushbackReader. r)))
+
+    (catch java.io.IOException e
+      (log/errorf "Couldn't open '%s': %s\n" source (.getMessage e)))
+    (catch RuntimeException e
+      (log/errorf "Error parsing edn file '%s': %s\n" source (.getMessage e)))))
