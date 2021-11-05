@@ -10,28 +10,28 @@
   (java.util.UUID/randomUUID))
 
 (defn create-entity
-  [node entity-type params]
+  [node params]
   (let [xtdb-id (:xt/id params (gen-uuid*))
         xtdb-tx (xt/submit-tx
                  node
                  [[:xtdb.api/put
                    (assoc params
                           :xt/id xtdb-id
-                          :entity/type entity-type)
+                          )
                    (:xtdb.api/valid-time params)]])]
     (-> params
         (assoc :xt/id xtdb-id)
         )))
 
 (defn create-entity-sync
-  [node entity-type params]
+  [node params]
   (let [xtdb-id (:xt/id params (gen-uuid*))
         xtdb-tx (xt/submit-tx
                  node
                  [[:xtdb.api/put
                    (assoc params
                           :xt/id xtdb-id
-                          :entity/type entity-type)
+                          )
                    (:xtdb.api/valid-time params)]])]
     (xt/await-tx node xtdb-tx)
     (-> params
