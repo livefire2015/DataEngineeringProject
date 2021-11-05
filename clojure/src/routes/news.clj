@@ -30,9 +30,9 @@
 (defn- init-news
   [{node :xtdb-node :as req}]
   (when (empty? (sn/find-all-news node {:limit 1}))
-    (dotimes [n 10]
-      (xs/create-entity node {:entity/type "rss_news"
-                              :xt/id (util/uuid-str)}))))
+    (->> (io/resource "sample_rss_news.edn")
+         (util/load-edn)
+         (xt/submit-tx node))))
 
 (def news-routes
   (r/routes (r/router [["/api/v1/news"
