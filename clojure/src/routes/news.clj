@@ -5,11 +5,11 @@
             [taoensso.timbre :as log]
             [clj-http.client :as http]
             [cheshire.core :as json]
+            [clojure.java.io :as io]
             [xtdb.api :as xt]
             [common.util :as util]
-            [common.xtdb.service :as xs]
-            [services.news :as sn]
-            ))
+            [services.news :as sn]))
+
 
 (defn all-news
   [{{:keys [id]} :path-params node :xtdb-node :as req}]
@@ -29,10 +29,15 @@
 
 (defn- init-news
   [{node :xtdb-node :as req}]
-  (when (empty? (sn/find-all-news node {:limit 1}))
-    (->> (io/resource "sample_rss_news.edn")
-         (util/load-edn)
-         (xt/submit-tx node))))
+  (cond-> {:init "done"}
+    (empty? (sn/find-all-news node {:limit 1}))
+    (assoc :xtdb-tx (->> (io/resource "sample_rss_news.edn")
+                         (util/load-edn)
+                         (xt/submit-tx node)))
+
+    :always
+    (-> (rr/ok)
+        (rr/content-type "application/json;charset=utf-8"))))
 
 (def news-routes
   (r/routes (r/router [["/api/v1/news"
