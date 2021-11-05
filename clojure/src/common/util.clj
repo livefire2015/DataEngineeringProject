@@ -166,11 +166,11 @@
    nested structure.  If the key at any level does not exist, hash-maps
    will NOT be created or updated."
   ([m [k & ks] f & args]
-     (if (get m k)
-       (if ks
-         (assoc m k (apply update-in-if-exists (get m k) ks f args))
-         (assoc m k (apply f (get m k) args)))
-       m)))
+   (if (get m k)
+     (if ks
+       (assoc m k (apply update-in-if-exists (get m k) ks f args))
+       (assoc m k (apply f (get m k) args)))
+     m)))
 
 (defn parse-comma-str [str]
   (if (not (string/blank? str))
@@ -191,7 +191,7 @@
                (let [new-kw (if (and (keyword? k)
                                      (not (qualified-keyword? k)))
                               (keyword (str n) (name k))
-                              k) ]
+                              k)]
                  (assoc acc new-kw v)))
              {} m))
 
@@ -214,10 +214,8 @@
               :crux.tx
               :crux.tx/tx-time
               :crux.tx/tx-ops
-              :entity/type
-              )
-      (clojure.set/rename-keys {:xt/id :id
-                                })))
+              :entity/type)
+      (clojure.set/rename-keys {:xt/id :id})))
 
 (defn populate-last-modified-time
   [m]
