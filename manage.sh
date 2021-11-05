@@ -15,6 +15,11 @@ elif [ $argument = "stop" ]; then
 elif [ $argument = "down" ]; then
     echo "Deleting infrastructure..."
     docker-compose down
+elif [ $argument = "restart" ]; then
+    echo "Restarting infrastructure..."
+    docker-compose down
+    docker-compose build
+    docker-compose up -d
 else
-  echo "Unknown argumnet! Options: up, stop, down"
+  echo "Unknown argumnet! Options: up, stop, down, restart"
 fi
