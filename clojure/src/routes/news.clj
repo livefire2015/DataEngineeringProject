@@ -27,9 +27,35 @@
       (rr/ok)
       (rr/content-type "application/json;charset=utf-8")))
 
+(defn- init-news
+  [{node :xtdb-node :as req}]
+  (when (empty? (sn/find-all-news node {:limit 1}))
+    (dotimes [n 10]
+      (xs/create-entity node {:entity/type "rss_news"
+                              :xt/id (util/uuid-str)}))))
+
 (def news-routes
   (r/routes (r/router [["/api/v1/news"
                         ["" {:get all-news
                              }]
                         ["/:id" {:get all-news
-                                 }]]])))
+                                 }]]
+                       ["/test/news"
+                        ["/init" init-news]]])))
+
+(comment
+  (def base "http://localhost:9090")
+  (def url-b (format "%s/api/v1/news" base))
+  (def url-t (format "%s/test/news/init" base))
+  (def id "e662a3c8-b6c2-4d73-a46f-1f95c5d65d36")
+  (def url-i (format "%s/%s" url-b id))
+
+  (do
+    (http/get url-b {:throw-exceptions false
+                     :as :json})
+    (http/get url-t {:throw-exceptions false
+                     :as :json})
+    (http/get url-i {:throw-exceptions false
+                     :as :json})
+    )
+  )
