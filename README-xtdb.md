@@ -79,7 +79,7 @@ Does this mean that none of the sink transactions have been indexed to the node?
 ......
 ```
 
-This returns nil.
+This returns empty as well.
 
 ```clojure
 (xt/pull (xt/db node)
@@ -87,4 +87,8 @@ This returns nil.
         "1c2ef1e0-b3e5-453d-8a98-c4f33aa7498c")
 ```
 
-Thanks!
+
+
+# Docker Compose Network 
+
+Putting it shortly, docker compose isolates each of the containers network. This is done by adding them to the <myapp>_default which is a newly created network, where <myapp> is the name of the directory. Under this each of the containers is added via it’s name. In our case that would be postgres and server. These are like DNS A-records, which means using postgres would resolve to the IP of the postgres container and so on. Each of the container can use these names to connect to the other containers.
