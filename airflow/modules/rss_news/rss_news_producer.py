@@ -2,7 +2,7 @@ import re
 from dataclasses import dataclass
 import atoma
 from parser import WebParser
-
+import uuid
 
 @dataclass(frozen=True)
 class News:
@@ -19,7 +19,7 @@ class News:
 
     def as_dict_xt(self):
         d = self.__dict__
-        d['xt/id'] = self._id
+        d['xt/id'] = str(uuid.uuid4())
         d['entity/type'] = 'rss_news'
         #TODO: valid-time
         del d['_id']
