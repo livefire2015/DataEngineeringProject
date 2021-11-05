@@ -137,11 +137,15 @@ services:
             dockerfile: Dockerfile
             args:
                - BUILD_DIR=/usr/src/app
+               - XTDB_DIR=/var/lib/xtdb
                - FILE=/usr/src/app/target/core-server.jar
                - APP=core-server.jar
         restart: unless-stopped
         ports:
             - 9090:9090
+        depends_on:
+            - kafka
+
 
     proxy:
         container_name: proxy
