@@ -36,6 +36,7 @@
   com.xtdb/xtdb-http-server {:mvn/version "1.19.0"}
   com.xtdb/xtdb-http-client {:mvn/version "1.19.0"}
   com.xtdb/xtdb-rocksdb {:mvn/version "1.19.0"}
+  com.xtdb/xtdb-lucene {:mvn/version "1.19.0"}
   }
 
  :aliases
