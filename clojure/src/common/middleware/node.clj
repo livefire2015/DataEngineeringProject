@@ -14,6 +14,7 @@
                 :xtdb/tx-log {:xtdb/module 'xtdb.kafka/->tx-log
                               :kafka-config {:bootstrap-servers "kafka:9092"}
                               }
+                :xtdb.lucene/lucene-store {:db-dir "/var/lib/xtdb/lucene"}
                 :xtdb.http-server/server {:port 3000
                                           :jetty-opts {:host "0.0.0.0"}}}]
     (xt/start-node config))
