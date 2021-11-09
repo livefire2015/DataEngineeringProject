@@ -31,3 +31,5 @@ dist
 deps-graph.png
 .nrepl-port
 .calva
+.lsp
+.clj-kondo
