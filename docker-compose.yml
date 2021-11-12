@@ -169,7 +169,7 @@ services:
 
 networks: 
     default:
-        name: backend-net
+        name: backend-xt
 
 volumes:
     static_data: {}
